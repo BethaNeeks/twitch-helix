@@ -231,4 +231,24 @@ module.exports = class TwitchHelix extends EventEmitter {
         return data[0] ? new Date(data[0].followed_at) : null
     }
 
+    getClipById = async id => {
+        const data = await this.sendHelixRequest("clips", {
+            requestOptions: {
+                qs: {id}
+            }
+        })
+        return data[0] ? (data[0][0] || null) : null
+    }
+
+    getClipsByIds = async ids => {
+        const data = await this.sendHelixRequest("clips", {
+            requestOptions: {
+                qs: {
+                    id: ids
+                }
+            }
+        })
+        return data[0] || null
+    }
+
 }
