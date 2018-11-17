@@ -237,7 +237,7 @@ module.exports = class TwitchHelix extends EventEmitter {
                 qs: {id}
             }
         })
-        return data[0] || null
+        return data[0] ? (data[0][0] || null) : null
     }
 
     getClipsByIds = async ids => {
