@@ -56,6 +56,20 @@ test("getStreamInfo*", async () => {
     expect(offlineStreamInfoByUsername).toBeNull()
 })
 
+test("getClipById", async () => {
+    const clipInfo = await twitchApi.getClipById("CrunchyTolerantSharkThunBeast")
+    expect(clipInfo.id).toBe("CrunchyTolerantSharkThunBeast")
+    const badClipInfo = await twitchApi.getClipById("somethingthatwontbethere")
+    expect(badClipInfo).toBeNull()
+})
+
+test("getClipsByIds", async () => {
+    const clipsInfo = await twitchApi.getClipsByIds(["CrunchyTolerantSharkThunBeast", "WildAntediluvianAyeayeAMPTropPunch"])
+    expect(clipsInfo).toHaveLength(2)
+    expect(clipsInfo[0].id).toBe("CrunchyTolerantSharkThunBeast")
+    expect(clipsInfo[1].id).toBe("WildAntediluvianAyeayeAMPTropPunch")
+})
+
 test("TwitchHelix should throw an Error if incorrectly constructed", () => {
     expect(() => new TwitchHelix()).toThrow("needs options object")
     expect(() => new TwitchHelix({clientId}).toThrow("TwitchHelix option clientSecret"))
