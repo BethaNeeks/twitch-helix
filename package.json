@@ -45,7 +45,7 @@
     "scripts": {
         "prepare": "npm run build-prod",
         "test": "npm run test-prod",
-        "test-prod": "npm run build-prod && jest",
+        "test-prod": "npm run build-prod && jest --testURL http://localhost/",
         "test-dev": "npm run clean && jest",
         "clean": "./node_modules/.bin/gulp clean",
         "build-prod": "NODE_ENV=production ./node_modules/.bin/gulp babel",

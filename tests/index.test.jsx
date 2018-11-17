@@ -24,14 +24,14 @@ test("getTwitchUser*", async () => {
     let loggingEventCalls = 0
     twitchApi.on("log-info", () => loggingEventCalls++)
 
-    const j4idn = await twitchApi.getTwitchUserByName("j4idn")
-    expect(j4idn.description).toMatch("")
-    expect(j4idn.display_name).toMatch("")
-    expect(j4idn.id).toBe("65887522")
-    expect(j4idn.login).toBe("j4idn")
-    expect(j4idn.offline_image_url).toMatch("https://")
-    expect(j4idn.profile_image_url).toMatch("https://")
-    expect(j4idn.view_count).toBeGreaterThan(0)
+    const user = await twitchApi.getTwitchUserByName("nightbot")
+    expect(user.description).toMatch("A chat moderator bot")
+    expect(user.display_name).toMatch("Nightbot")
+    expect(user.id).toBe("19264788")
+    expect(user.login).toBe("nightbot")
+    expect(user.offline_image_url).toMatch("https://")
+    expect(user.profile_image_url).toMatch("https://")
+    expect(user.view_count).toBeGreaterThan(0)
 
     const twitchUsers = await twitchApi.getTwitchUsersByName(["gronkh", "xpandorya"])
     expect(twitchUsers).toHaveLength(2)
